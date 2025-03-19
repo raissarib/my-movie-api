@@ -1,12 +1,13 @@
 class MoviesController < ApplicationController
+  before_action :set_movie, only: [ :show ]
+
   def index
     movies = Movie.all
     render json: movies
   end
 
   def show
-    movie = Movie.find(params[:id])
-    render json: movie
+    render json: @movie
   end
 
   def create
@@ -16,6 +17,27 @@ class MoviesController < ApplicationController
     else
       render json: { errors: movie.errors.full_messages }, status: :unprocessable_entity
     end
+  end
+
+  def update
+    if @movie.update(movie_params)
+      render json: @movie
+    else
+      render json:  { errors: movie.errors.full_messages }, status: :unprocessable_entity
+    end
+  end
+
+  def destroy
+    @movie.destroy
+    head :no_content
+  end
+
+  private
+
+  def set_movie
+    @movie = Movie.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    render json: { error: "Filme não encontrado" }, status: :not_found
   end
 
   def movie_params
