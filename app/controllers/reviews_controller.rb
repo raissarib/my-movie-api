@@ -1,12 +1,13 @@
 class ReviewsController < ApplicationController
+  before_action :set_review, only: [ :show ]
+
   def index
     reviews = Review.all
     render json: reviews
   end
 
   def show
-    review = Review.find(params[:id])
-    render json: review
+    render json: @review
   end
 
   def create
@@ -16,6 +17,27 @@ class ReviewsController < ApplicationController
     else
       render json: { errors: review.errors.full_messages }, status: :unprocessable_entity
     end
+  end
+
+  def update
+    if @review.update(review_params)
+      render json: @review
+    else
+      render json: { errors: @review.errors.full_messages }, status: :unprocessable_entity
+    end
+  end
+
+  def destroy
+    @review.destroy
+    head :no_content
+  end
+
+  private
+
+  def set_review
+    @review = Review.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    render json: { error: "Avaliação não encontrada" }, status: :not_found
   end
 
   def review_params
