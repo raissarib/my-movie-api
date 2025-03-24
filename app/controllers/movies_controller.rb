@@ -1,5 +1,5 @@
 class MoviesController < ApplicationController
-  before_action :set_movie, only: [ :show ]
+  before_action :set_movie, :authenticate_user!, only: [ :show, :update, :destroy ]
 
   def index
     movies = Movie.all
@@ -23,7 +23,7 @@ class MoviesController < ApplicationController
     if @movie.update(movie_params)
       render json: @movie
     else
-      render json:  { errors: movie.errors.full_messages }, status: :unprocessable_entity
+      render json: { errors: @movie.errors.full_messages }, status: :unprocessable_entity
     end
   end
 
