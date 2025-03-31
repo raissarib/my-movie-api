@@ -37,19 +37,30 @@ A API estará disponível em `http://localhost:3000`.
 ## Endpoints Principais
 
 ### Autenticação
-- `POST /users/sign_up` - Cadastro de usuário
-- `POST /users/sign_in` - Login de usuário
+- `POST /register` - Cadastro de usuário
+- `POST /login` - Login de usuário
+
+### Usuários
+- `GET /users` - Listar usuários
+- `GET /users/:id` - Obter detalhes de um usuário
+- `PATCH/PUT /users/:id` - Atualizar informações de um usuário
+- `DELETE /users/:id` - Remover um usuário
 
 ### Filmes
 - `GET /movies` - Listar todos os filmes
 - `POST /movies` - Adicionar um novo filme
 - `GET /movies/:id` - Obter detalhes de um filme
-- `PUT /movies/:id` - Atualizar informações de um filme
+- `PATCH/PUT /movies/:id` - Atualizar informações de um filme
 - `DELETE /movies/:id` - Remover um filme
 
 ### Avaliações
-- `POST /movies/:id/reviews` - Avaliar um filme
-- `GET /movies/:id/reviews` - Listar avaliações de um filme
+- `GET /reviews` - Listar todas as avaliações
+- `POST /reviews` - Criar uma nova avaliação
+- `GET /reviews/:id` - Obter detalhes de uma avaliação
+- `PATCH/PUT /reviews/:id` - Atualizar uma avaliação
+- `DELETE /reviews/:id` - Remover uma avaliação
+
+---
 
 Feito com ❤ por [Raissa Rib](https://github.com/raissarib).
 
