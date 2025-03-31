@@ -7,8 +7,6 @@ My Movie API é uma API desenvolvida em Ruby on Rails para gerenciar filmes assi
 - Ruby on Rails
 - PostgreSQL
 - JWT (para autenticação de usuários)
-- RSpec (para testes automatizados)
-- Docker (opcional, para ambiente de desenvolvimento)
 
 ## Instalação e Configuração
 
